@@ -52,7 +52,6 @@ jobs:
         with:
           rust-version: ${{ matrix.rust }}
           components: rustfmt,clippy
-      - uses: actions/checkout@v1
       - name: "Get cargo bin directory"
         id: cargo-bin-dir
         run: echo "::set-output name=dir::$HOME\.cargo\bin"
