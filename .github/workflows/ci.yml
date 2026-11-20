@@ -31,8 +31,10 @@ jobs:
         id: cache-cargo-make
         uses: actions/cache@v2
         with:
-          path: ${{ steps.cargo-bin-dir.outputs.dir }}/cargo-make
-          key: ${{ runner.os }}-${{ matrix.rust }}-cargo-make-${{ env.CI_CARGO_MAKE_VERSION }}
+          path: |
+            ${{ steps.cargo-bin-dir.outputs.dir }}/cargo-make
+            ${{ steps.cargo-bin-dir.outputs.dir }}/makers
+          key: ${{ runner.os }}-${{ matrix.rust }}-cargo-make-${{ env.CI_CARGO_MAKE_VERSION }}-v2
       - name: "Install cargo-make"
         if: steps.cache-cargo-make.outputs.cache-hit != 'true'
         run: cargo install cargo-make --version ${{ env.CI_CARGO_MAKE_VERSION }}
@@ -60,8 +62,10 @@ jobs:
         id: cache-cargo-make
         uses: actions/cache@v2
         with:
-          path: ${{ steps.cargo-bin-dir.outputs.dir }}\cargo-make.exe
-          key: ${{ runner.os }}-${{ matrix.rust }}-cargo-make-${{ env.CI_CARGO_MAKE_VERSION }}
+          path: |
+            ${{ steps.cargo-bin-dir.outputs.dir }}\cargo-make.exe
+            ${{ steps.cargo-bin-dir.outputs.dir }}\makers.exe
+          key: ${{ runner.os }}-${{ matrix.rust }}-cargo-make-${{ env.CI_CARGO_MAKE_VERSION }}-v2
       - name: "Install cargo-make"
         if: steps.cache-cargo-make.outputs.cache-hit != 'true'
         run: cargo install cargo-make --version ${{ env.CI_CARGO_MAKE_VERSION }}
