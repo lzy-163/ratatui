@@ -19,14 +19,14 @@ jobs:
       matrix:
         rust: ["1.59.0", "stable"]
     steps:
+      - uses: actions/checkout@v1
       - uses: hecrj/setup-rust-action@967aec96c6a27a0ce15c1dac3aaba332d60565e2
         with:
           rust-version: ${{ matrix.rust }}
           components: rustfmt,clippy
-      - uses: actions/checkout@v1
       - name: "Get cargo bin directory"
         id: cargo-bin-dir
-        run: echo "::set-output name=dir::$HOME/.cargo/bin"
+        run: echo "dir=$HOME/.cargo/bin" >> $GITHUB_OUTPUT
       - name: "Cache cargo make"
         id: cache-cargo-make
         uses: actions/cache@v2
@@ -52,10 +52,9 @@ jobs:
         with:
           rust-version: ${{ matrix.rust }}
           components: rustfmt,clippy
-      - uses: actions/checkout@v1
       - name: "Get cargo bin directory"
         id: cargo-bin-dir
-        run: echo "::set-output name=dir::$HOME\.cargo\bin"
+        run: echo "dir=$HOME\.cargo\bin" >> $GITHUB_OUTPUT
       - name: "Cache cargo make"
         id: cache-cargo-make
         uses: actions/cache@v2
