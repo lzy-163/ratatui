@@ -47,7 +47,6 @@ jobs:
       matrix:
         rust: ["1.59.0", "stable"]
     steps:
-      - uses: actions/checkout@v1
       - uses: hecrj/setup-rust-action@967aec96c6a27a0ce15c1dac3aaba332d60565e2
         with:
           rust-version: ${{ matrix.rust }}
